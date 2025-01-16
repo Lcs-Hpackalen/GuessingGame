@@ -49,15 +49,18 @@ struct GameView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 
-                Text(feedback)
-                    .font(
-                        .custom(
-                            "BradleyHandITCTT-Bold",
-                            size: 24.0,
-                            relativeTo: .title3
+                ZStack{
+                    Capsule()
+                        .fill(.cyan)
+                    Text(feedback)
+                        .font(
+                            .custom(
+                                "BradleyHandITCTT-Bold",
+                                size: 24.0,
+                                relativeTo: .title3
+                            )
                         )
-                    )
-                    
+                }
 
                 Button {
                     reset()
@@ -68,9 +71,9 @@ struct GameView: View {
                 .tint(.red)
 
                 
-                // Show the user's guesses
-                Text("Guesses made")
-                    .font(.title3.smallCaps())
+//show the user their guesses
+                Text("Guesses made: \(guessesMade.count)")
+                        .font(.title3.smallCaps())
                 ScrollView {
                     VStack(spacing: 5) {
                         ForEach(guessesMade, id: \.self) { currentGuess in
@@ -97,6 +100,16 @@ struct GameView: View {
         // When should they guess higher?
         // When should then guess lower?
         // FILL IN THIS CODE
+    
+        if  selectedNumber == target {
+            feedback = ("correct!!")
+        }
+        else if selectedNumber > target {
+            feedback = ("The number is smaller")
+                }
+        else if selectedNumber < target {
+            feedback = ("The number is greater")
+        }
         
         // Save the user's guesses
         guessesMade.append(selectedNumber)
