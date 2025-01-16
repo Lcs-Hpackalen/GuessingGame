@@ -11,7 +11,7 @@ import SwiftUI
 struct GuessingGameApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            GameView()
         }
     }
 }
